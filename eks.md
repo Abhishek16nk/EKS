@@ -139,6 +139,13 @@ enter the access key & secret key of the account
 and now you will be able to list all the objects in your cluster  
 
 
+argocd-installation:
+
+helm repo add argo https://argoproj.github.io/argo-helm
+ 
+helm install my-ARGOCD argo/argo-cd
+
+
 
 
 
