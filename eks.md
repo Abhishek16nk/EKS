@@ -124,7 +124,7 @@ yum install kubectl -y
 
 nowuse the command to connect to the eks cluster from your bastion:
 
-aws eks --region <region-where-your-cluster-is-configured> update-kubeconfig --name <your-cluster-name>
+aws eks --region (region-where-your-cluster-is-configured) update-kubeconfig --name (your-cluster-name)
 
 now you can use kubectl commands like
 
