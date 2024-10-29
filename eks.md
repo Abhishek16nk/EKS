@@ -164,9 +164,27 @@ and now you will be able to list all the objects in your cluster
 
 argocd-installation:
 
-helm repo add argo https://argoproj.github.io/argo-helm
- 
-helm install my-ARGOCD argo/argo-cd
+kubectl create ns argocd
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+
+kubectl get svc -n argocd
+copy the selected external-ip shown in below image: (a3b8552c14e48466aa1616e71b7725d3-1436231275.ap-southeast-2.elb.amazonaws.com)
+![image](https://github.com/user-attachments/assets/059f73b0-d216-4f3e-809c-18a7c9b5d6ec)
+
+http://(external-ip)
+http://a3b8552c14e48466aa1616e71b7725d3-1436231275.ap-southeast-2.elb.amazonaws.com
+
+ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d
+
+ ![image](https://github.com/user-attachments/assets/062b8fd5-d1da-47dc-9e00-120d9e987958)
+(dPzpzcHiSrEfTHiY)
+
+![image](https://github.com/user-attachments/assets/9d896091-96b9-4277-9f53-6fe04d9ff3b5)
+
+
 
 
 
