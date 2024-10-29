@@ -90,6 +90,29 @@ spinup a virtual machine (ec2) & dont forget to select the instance profile whic
 
 once vm is up & running  login to the vm & install following packages
 
+ec2 login:
+select the instance u want to login
+
+![image](https://github.com/user-attachments/assets/190c9c57-9732-49ce-83d8-488d47573b6d)
+
+select ssh client as shown below
+![image](https://github.com/user-attachments/assets/92ffaa5c-8b68-48cb-ab2a-69c37bb0e88e)
+
+while creating ec2 u need to download pem key that name should be given in below command
+
+copy example cmd below: ssh -i "eksbastion.pem" ec2-user@ec2-13-239-134-157.ap-southeast-2.compute.amazonaws.com
+
+![image](https://github.com/user-attachments/assets/37a249e3-3c3f-4411-b2ac-7146638dcd0a)
+
+in you laptop
+go to cmd and type cd Downloads as shown below, as u have downloaded key their
+
+![image](https://github.com/user-attachments/assets/f889e62f-ddb3-43ed-8156-fc2ee46ead5f)
+
+now run the above cmd which u copied from connect--->ssh-client-->
+ssh -i "eksbastion.pem" ec2-user@ec2-13-239-134-157.ap-southeast-2.compute.amazonaws.com
+
+
 aws cli:
 
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
