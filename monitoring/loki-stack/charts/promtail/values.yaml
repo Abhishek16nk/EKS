@@ -41,7 +41,7 @@ initContainer: []
 
 image:
   # -- The Docker registry
-  registry: ghcr.io/bh-ent-tech
+  registry: 
   # -- Docker image repository
   repository: docker.io/grafana/promtail
   # -- Overrides the image tag whose default is the chart's appVersion
