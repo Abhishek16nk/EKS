@@ -1,0 +1,17 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: openebs-hostpath2
+  annotations:
+    openebs.io/cas-type: local
+    cas.openebs.io/config: |
+      #device type will create a PV by
+      # issuing a BDC and will extract the path
+      # values from the associated BD.
+      - name: StorageType
+        value: "hostpath"
+      - name: BasePath
+        value: /data
+provisioner: openebs.io/local
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Retain
