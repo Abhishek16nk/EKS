@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki
+  template:
+    metadata:
+      labels:
+        app: loki
+    spec:
+      containers:
+      - name: loki
+        image: grafana/loki:latest
+        ports:
+        - containerPort: 3100
+        command:
+          - /loki
+          - -config.file=/etc/loki/loki.yaml
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/loki/
+      volumes:
+      - name: config-volume
+        configMap:
+          name: loki-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loki
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 3100
+      targetPort: 3100
+  selector:
+    app: loki
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: loki-config
+data:
+  loki.yaml: |
+    server:
+      http_listen_port: 3100
+    ingester:
+      chunk_idle_period: 1h
+      chunk_block_size: 200000
+      max_chunks_per_block: 50000
