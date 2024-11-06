@@ -1,5 +1,5 @@
 image:
-  repository: docker pull grafana/loki
+  repository: grafana/loki
   tag: main-71d1c6b
   pullPolicy: IfNotPresent
 
