@@ -209,11 +209,10 @@ containerSecurityContext:
 service:
   type: LoadBalancer
   nodePort:
-  port: 3100
+  port: 80
   annotations: {}
   labels: {}
-  targetPort: http-metrics
-
+  targetPort: 3100
 serviceAccount:
   create: true
   name:
