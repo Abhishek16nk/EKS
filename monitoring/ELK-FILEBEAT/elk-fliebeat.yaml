@@ -30,10 +30,23 @@ data:
         name: filebeat
         keepfiles: 7
         permissions: 0644
-
+    cloud.id: ${ELASTIC_CLOUD_ID}
+    cloud.auth: ${ELASTIC_CLOUD_AUTH}
     processors:
+      - add_cloud_metadata:
+      - add_host_metadata:
+      - add_fields:
+            target: beat
+            fields:
+             name: filebeat-elk
+             
       - add_kubernetes_metadata:
-          in_cluster: true  # Automatically fetch Kubernetes metadata
+          # in_cluster: true  # Automatically fetch Kubernetes metadata
+          host: ${NODE_NAME}
+          matchers:
+          - logs_path:
+              logs_path: "/var/log/container/"
+    
 
 ---
 apiVersion: apps/v1
