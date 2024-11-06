@@ -207,7 +207,7 @@ containerSecurityContext:
   allowPrivilegeEscalation: false
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   nodePort:
   port: 3100
   annotations: {}
