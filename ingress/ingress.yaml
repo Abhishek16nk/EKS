@@ -1,19 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: my-app-ingress
+  name: loki-ingress
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: <YOUR_DOMAIN_NAME>
+  - host: ae29186faa30648fe8ab8ec45dcbad81-702995805.us-east-1.elb.amazonaws.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: <YOUR_SERVICE_NAME>
+            name: loki
             port:
               number: 80
