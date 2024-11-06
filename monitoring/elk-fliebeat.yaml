@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: filebeat-config
+  namespace: kube-system
+  labels:
+    app: filebeat
+data:
+  filebeat.yml: |
+    # Filebeat configuration for Kubernetes log collection
+
+    filebeat.inputs:
+      - type: log
+        enabled: true
+        paths:
+          - /var/log/containers/*.log  # Collect logs from all containers
+
+    # Log output to Logstash or Elasticsearch
+    output.logstash:
+      hosts: ["<EC2_IP>:5044"]  # Point to Logstash (EC2 IP and port)
+
+    json.keys_under_root: true
+    json.add_error_key: true
+
+    logging:
+      level: info
+      to_files: true
+      files:
+        path: /var/log/filebeat
+        name: filebeat
+        keepfiles: 7
+        permissions: 0644
+
+    processors:
+      - add_kubernetes_metadata:
+          in_cluster: true  # Automatically fetch Kubernetes metadata
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: filebeat
+  namespace: kube-system
+  labels:
+    app: filebeat
+spec:
+  selector:
+    matchLabels:
+      app: filebeat
+  template:
+    metadata:
+      labels:
+        app: filebeat
+    spec:
+      containers:
+        - name: filebeat
+          image: docker.elastic.co/beats/filebeat:8.0.0
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/filebeat/filebeat.yml
+              subPath: filebeat.yml
+            - name: log-volume
+              mountPath: /var/log/containers
+            - name: varlibdockercontainers
+              mountPath: /var/lib/docker/containers
+            - name: varlog
+              mountPath: /var/log
+      volumes:
+        - name: config-volume
+          configMap:
+            name: filebeat-config
+        - name: log-volume
+          hostPath:
+            path: /var/log/containers
+            type: Directory
+        - name: varlibdockercontainers
+          hostPath:
+            path: /var/lib/docker/containers
+            type: Directory
+        - name: varlog
+          hostPath:
+            path: /var/log
+            type: Directory
