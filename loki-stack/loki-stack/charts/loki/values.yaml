@@ -1,6 +1,6 @@
 image:
-  repository: bitnami/grafana-loki
-  tag: latest
+  repository: docker pull grafana/loki
+  tag: main-71d1c6b
   pullPolicy: IfNotPresent
 
   ## Optionally specify an array of imagePullSecrets.
