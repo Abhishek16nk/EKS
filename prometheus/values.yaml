@@ -51,7 +51,7 @@ alertmanager:
   ## alertmanager container image
   ##
   image:
-    repository: ghcr.io/bh-ent-tech/quay.io/prometheus/alertmanager
+    repository: quay.io/prometheus/alertmanager
     tag: v0.24.0
     pullPolicy: IfNotPresent
 
@@ -404,7 +404,7 @@ configmapReload:
     ## configmap-reload container image
     ##
     image:
-      repository: ghcr.io/bh-ent-tech/jimmidyson/configmap-reload
+      repository: jimmidyson/configmap-reload
       tag: v0.5.0
       pullPolicy: IfNotPresent
 
@@ -448,7 +448,7 @@ configmapReload:
     ## configmap-reload container image
     ##
     image:
-      repository: ghcr.io/bh-ent-tech/jimmidyson/configmap-reload
+      repository: jimmidyson/configmap-reload
       tag: v0.5.0
       pullPolicy: IfNotPresent
 
@@ -516,7 +516,7 @@ nodeExporter:
   ## node-exporter container image
   ##
   image:
-    repository: ghcr.io/bh-ent-tech/quay.io/prometheus/node-exporter
+    repository: quay.io/prometheus/node-exporter
     tag: v1.3.1
     pullPolicy: IfNotPresent
 
@@ -693,7 +693,7 @@ server:
   ## Prometheus server container image
   ##
   image:
-    repository: ghcr.io/bh-ent-tech/quay.io/prometheus/prometheus
+    repository: quay.io/prometheus/prometheus
     tag: v2.39.1
     pullPolicy: IfNotPresent
 
@@ -1204,7 +1204,7 @@ pushgateway:
   ## pushgateway container image
   ##
   image:
-    repository: ghcr.io/bh-ent-tech/prom/pushgateway
+    repository: prom/pushgateway
     tag: v1.4.3
     pullPolicy: IfNotPresent
 
