@@ -115,5 +115,37 @@ Delete the apiservice that is in False state
 kubectl patch ns ingress-nginx -p '{"metadata":{"finalizers":null}}'
 
 
+--------------------------------------------------------------------------------
+ELK:
+
+5.2 Connect Kibana to Elasticsearch
+Ensure that Kibana is connected to your Elasticsearch cluster. 
+By default, Kibana connects to http://localhost:9200. 
+----------------------------------
+5.3 Create an Index Pattern in Kibana
+
+Go to Kibana and navigate to Management > Kibana > Index Patterns.
+Create a new index pattern:
+Enter filebeat-* in the Index Pattern field.
+Kibana will auto-detect fields and time-based indices (e.g., @timestamp).
+
+------------------------
+5.4 Explore Logs in Kibana
+After creating the index pattern, go to Discover in Kibana.
+You should now see logs from all your applications (collected by Filebeat) in the log view.
+---------------
+
+5.5 Create Dashboards in Kibana
+You can create custom visualizations and dashboards based on the log data. For example:
+
+Request errors or response times for different applications.
+Container status or crash reports.
+Real-time error logging.
+You can also import pre-built Filebeat dashboards if you'd like to use default templates for visualizing your logs.
+
+Navigate to Dashboard > Import.
+
+Import the Filebeat dashboards from the kibana/beats directory or use pre-configured dashboards for application monitoring.
+
 
  
