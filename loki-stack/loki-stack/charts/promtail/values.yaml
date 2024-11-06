@@ -41,9 +41,9 @@ initContainer: []
 
 image:
   # -- The Docker registry
-  registry: 
+  registry: grafana
   # -- Docker image repository
-  repository: grafana/promtail
+  repository: promtail
   # -- Overrides the image tag whose default is the chart's appVersion
   tag: main-ada4b7b
   # -- Docker image pull policy
