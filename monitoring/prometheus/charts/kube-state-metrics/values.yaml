@@ -7,8 +7,8 @@ image:
   pullPolicy: IfNotPresent
 
 #imagePullSecrets: []
-imagePullSecrets:
- - name: "cde-reg-credentials"
+# imagePullSecrets:
+#  - name: "cde-reg-credentials"
 
 # If set to true, this will deploy kube-state-metrics as a StatefulSet and the data
 # will be automatically sharded across <.Values.replicas> pods using the built-in
