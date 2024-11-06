@@ -50,8 +50,8 @@ image:
   pullPolicy: IfNotPresent
 
 # -- Image pull secrets for Docker images
-imagePullSecrets:
-  - name: cde-reg-credentials
+imagePullSecrets: {}
+  # - name: cde-reg-credentials
 
 # -- Annotations for the DaemonSet
 annotations: {}
